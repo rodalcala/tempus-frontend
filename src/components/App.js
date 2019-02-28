@@ -29,9 +29,9 @@ class App extends Component {
       center: this.state.barcelona,
       zoom: 12
     });
-    let infoWindow = new window.google.maps.InfoWindow();
+    // let infoWindow = new window.google.maps.InfoWindow();
 
-    // HTML5 geolocation
+    // set position of the user via HTML5 geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         let pos = {
@@ -39,25 +39,31 @@ class App extends Component {
           lng: position.coords.longitude
         };
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
-        map.setCenter(pos);
+        let image = {
+          url: require('./../assets/gps.png'),
+          size: new window.google.maps.Size(32, 32),
+          origin: new window.google.maps.Point(0, 0),
+          anchor: new window.google.maps.Point(16, 16)
+        }
+
+        new window.google.maps.Marker({
+          position: pos,
+          map: map,
+          icon: image,
+        })
       }, () => {
-        this.handleLocationError(true, infoWindow, map.getCenter());
+        this.handleLocationError(true);
       });
     } else {
       // Browser doesn't support Geolocation
-      this.handleLocationError(false, infoWindow, map.getCenter());
+      this.handleLocationError(false);
     }
   }
 
-  handleLocationError = (browserHasGeolocation, infoWindow, pos) => {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
+  handleLocationError = (browserHasGeolocation) => {
+    console.log(browserHasGeolocation ?
       'Error: The Geolocation service failed.' :
       'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(this.map);
   }
 
   render() {
