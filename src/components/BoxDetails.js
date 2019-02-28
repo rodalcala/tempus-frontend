@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from  'react-router-dom';
 import './Map.css';
 
 class BoxDetails extends Component {
@@ -15,7 +16,12 @@ class BoxDetails extends Component {
 
   render() {
     return (
-      <div className="details-conteiner">
+      <Link to={{
+        pathname: `/box/${this.props.box._id}`,
+        state: {
+          box: this.props.box
+        }
+      }} className="details-conteiner">
         <div className="sim-details">
           <h1>{this.props.box.name}</h1>
           <h3 className="data">{this.props.box.dataLeft + ' Mb of data available'}</h3>
@@ -25,7 +31,7 @@ class BoxDetails extends Component {
         <div className="sim-type">
           {this.handleSimType()}
         </div>
-      </div>
+      </Link>
     )
   }
 }
