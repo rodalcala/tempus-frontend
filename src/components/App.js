@@ -29,7 +29,8 @@ class App extends Component {
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: this.state.barcelona,
-      zoom: 14
+      zoom: 14,
+      disableDefaultUI: true
     });
 
     // set position of the user via HTML5 geolocation
