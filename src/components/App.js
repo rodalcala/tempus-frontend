@@ -102,11 +102,11 @@ class App extends Component {
   }
 
   handleBoxClick = (index) => {
-    if (this.state.selectedBox !== undefined && this.state.selectedBox === index) {
-      this.setState({ selectedBox: undefined });
-    } else {
-      this.setState({ selectedBox: index });
-    }
+    this.setState({ 
+      selectedBox: this.state.selectedBox === index
+        ? undefined
+        : index 
+    });
   }
 
   handleLocationError = (browserHasGeolocation) => {
@@ -115,10 +115,9 @@ class App extends Component {
       'Error: Your browser doesn\'t support geolocation.');
   }
 
-  renderDetails = (details) => {
-    if (this.state.selectedBox === undefined) {
-      return;
-    } else {
+  renderDetails = () => {
+    const details = this.state.boxes[this.state.selectedBox]
+    if (this.state.selectedBox !== undefined) {
       return <BoxDetails box={details}/>
     }
   }
@@ -126,7 +125,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.boxes ? this.renderDetails(this.state.boxes[this.state.selectedBox]) : 'Loading...'}
+        {this.state.boxes ? this.renderDetails() : 'Loading...'}
         <div id="map"></div>
       </div>
     );
