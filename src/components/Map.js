@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
-import apiKey from './../assets/google.maps.api';
+import './Map.css';
+import apiKey from '../assets/google.maps.api';
 import BoxDetails from './BoxDetails';
 
-class App extends Component {
+class Map extends Component {
 
   state = {
     barcelona: {lat: 41.397759, lng: 2.187349},
@@ -124,7 +124,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="Maps">
         {this.state.boxes ? this.renderDetails() : 'Loading...'}
         <div id="map"></div>
       </div>
@@ -142,4 +142,4 @@ function loadScript(url) {
   index.parentNode.insertBefore(script, index);
 }
 
-export default App;
+export default Map;
