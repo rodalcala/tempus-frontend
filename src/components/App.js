@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import apiKey from './../assets/google.maps.api';
+import BoxDetails from './BoxDetails';
 
 class App extends Component {
 
@@ -75,7 +76,7 @@ class App extends Component {
 
     // add boxes to the map
     if (this.state.boxes) {
-      this.state.boxes.forEach((box) => {
+      this.state.boxes.forEach((box, index) => {
         if (box.full) {
           const marker = new window.google.maps.Marker({
             position: {lat: box.lat, lng: box.lng},
@@ -83,7 +84,7 @@ class App extends Component {
             icon: fullBox,
           });
           marker.addListener('click', () => {
-            console.log(box.name);
+            this.handleBoxClick(index);
           });
         } else {
           const marker = new window.google.maps.Marker({
@@ -92,23 +93,39 @@ class App extends Component {
             icon: emptyBox,
           });
           marker.addListener('click', () => {
-            console.log(box.name);
+            this.handleBoxClick(index);
           });
         }
       });
     }
   }
 
+  handleBoxClick = (index) => {
+    if (this.state.selectedBox !== undefined && this.state.selectedBox === index) {
+      this.setState({ selectedBox: undefined });
+    } else {
+      this.setState({ selectedBox: index });
+    }
+  }
+
   handleLocationError = (browserHasGeolocation) => {
-    console.log(browserHasGeolocation ?
+    alert(browserHasGeolocation ?
       'Error: The Geolocation service failed.' :
       'Error: Your browser doesn\'t support geolocation.');
+  }
+
+  renderDetails = (details) => {
+    if (this.state.selectedBox === undefined) {
+      return;
+    } else {
+      return <BoxDetails box={details}/>
+    }
   }
 
   render() {
     return (
       <div className="App">
-        <div className="berta"></div>
+        {this.state.boxes ? this.renderDetails(this.state.boxes[this.state.selectedBox]) : 'Loading...'}
         <div id="map"></div>
       </div>
     );

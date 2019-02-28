@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-class BoxDetails extends Component {
-
-}
+const BoxDetails = ({ box }) => (
+  <div className="berta">
+    {box.name}
+  </div>
+)
 
 export default BoxDetails;
