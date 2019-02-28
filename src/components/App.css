@@ -2,7 +2,17 @@
   text-align: center;
 }
 
+.berta {
+  height: 15vh;
+  width: 90vw;
+  background-color: salmon;
+  position: fixed;
+  z-index: 9;
+  top: 82vh;
+  left: 5vw;
+}
+
 #map {
   height: 100vh;
-  widows: 100vw;
+  width: 100vw;
 }

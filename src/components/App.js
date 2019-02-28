@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import apiKey from './../assets/google.maps.api';
 
 class App extends Component {
 
@@ -20,7 +21,7 @@ class App extends Component {
   }
 
   renderMap = () => {
-    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyD8CW2x7KfEWmzWTge0_kfpYI6QsBe90bU&callback=initMap');
+    loadScript(`https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`);
     window.initMap = this.initMap;
   }
 
@@ -29,7 +30,6 @@ class App extends Component {
       center: this.state.barcelona,
       zoom: 14
     });
-    // let infoWindow = new window.google.maps.InfoWindow();
 
     // set position of the user via HTML5 geolocation
     if (navigator.geolocation) {
@@ -77,19 +77,25 @@ class App extends Component {
     if (this.state.boxes) {
       this.state.boxes.forEach((box) => {
         if (box.full) {
-          new window.google.maps.Marker({
+          const marker = new window.google.maps.Marker({
             position: {lat: box.lat, lng: box.lng},
             map: map,
             icon: fullBox,
-          })
+          });
+          marker.addListener('click', () => {
+            console.log(box.name);
+          });
         } else {
-          new window.google.maps.Marker({
+          const marker = new window.google.maps.Marker({
             position: {lat: box.lat, lng: box.lng},
             map: map,
             icon: emptyBox,
-          })
+          });
+          marker.addListener('click', () => {
+            console.log(box.name);
+          });
         }
-      })
+      });
     }
   }
 
@@ -102,6 +108,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="berta"></div>
         <div id="map"></div>
       </div>
     );
