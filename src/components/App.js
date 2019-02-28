@@ -4,11 +4,19 @@ import './App.css';
 class App extends Component {
 
   state = {
-    barcelona: {lat: 41.390205, lng: 2.154007}
+    barcelona: {lat: 41.390205, lng: 2.154007},
+    baseUrl: 'http://localhost:4000',
   }
 
   componentDidMount() {
     this.renderMap();
+    this.getBoxes();
+  }
+
+  getBoxes() {
+    fetch(this.state.baseUrl + '/boxes')
+      .then(res => res.json())
+      .then(boxes => this.setState({ boxes }))
   }
 
   renderMap = () => {
@@ -17,10 +25,39 @@ class App extends Component {
   }
 
   initMap = () => {
-    new window.google.maps.Map(document.getElementById('map'), {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
       center: this.state.barcelona,
       zoom: 12
-    })
+    });
+    let infoWindow = new window.google.maps.InfoWindow();
+
+    // HTML5 geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        let pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+      }, () => {
+        this.handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      this.handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
+
+  handleLocationError = (browserHasGeolocation, infoWindow, pos) => {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(this.map);
   }
 
   render() {
@@ -33,7 +70,7 @@ class App extends Component {
   }
 }
 
-// Needed to load the script at the very top of our scripts
+// Needed to load the Google Maps script at the very top of our scripts
 function loadScript(url) {
   const index  = window.document.getElementsByTagName("script")[0];
   const script = window.document.createElement("script");
