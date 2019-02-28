@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Map.css';
 
 class BoxDetails extends Component {
   handleSimType = () => {
