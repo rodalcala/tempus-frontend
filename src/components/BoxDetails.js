@@ -8,6 +8,7 @@ class BoxDetails extends Component {
     minsLeft: 0,
     dataLeft: 0,
     simType: 'nanoSIM',
+    expiration: new Date().toISOString()
 	};
 
 	componentDidMount() {
@@ -59,12 +60,13 @@ class BoxDetails extends Component {
     this.setState({
       simType: target.value
     })
-    console.log(this.state);
   }
 
-  // handleExpiration = ({target}) => {
-  //   console.log(target.value);
-  // }
+  handleExpiration = ({target}) => {
+    this.setState({
+      expiration: new Date(target.value).toISOString()
+    })
+  }
 
 	renderDetails = () => {
 		// display different details if the box if full
@@ -129,14 +131,14 @@ class BoxDetails extends Component {
                 </select>
               </label>
               <br />
-              {/* <label>
+              <label>
                 When is it expiring?
                   <input 
                     name="expiration"
-                    type="date"
+                    type="datetime-local"
                     onChange={this.handleExpiration}
                   />
-              </label> */}
+              </label>
 						</form>
 						<Link
 							onClick={this.fillBox}
