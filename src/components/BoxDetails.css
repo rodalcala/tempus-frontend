@@ -1,0 +1,22 @@
+.box-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container {
+  background-color: brown;
+  width: 100vw;
+  height: 9vh;
+}
+
+.image-container {
+  background-color: blanchedalmond;
+  width: 100vw;
+  height: 28vh;
+}
+
+.details-container {
+  background-color: pink;
+  width: 100vw;
+  height: 63vh;
+}
