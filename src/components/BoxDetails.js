@@ -36,15 +36,16 @@ class BoxDetails extends Component {
 	};
 
 	fillBox = () => {
+    const {dataLeft, minsLeft, expiration, simType, comments} = this.state;
 		fetch(this.state.baseUrl + '/box/' + this.props.match.params.id, {
 			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				// mock data
-				dataLeft: 30,
-				minsLeft: 512,
-				expiration: '2019-22-05T23:00:00.000Z',
-				simType: 'SIM'
+				dataLeft,
+				minsLeft,
+				expiration,
+        simType,
+        comments
 			})
 		});
   };
@@ -70,7 +71,6 @@ class BoxDetails extends Component {
   }
 
   handleComments = ({target}) => {
-    console.log(target.value);
     this.setState({
       comments: target.value
     })
