@@ -58,19 +58,19 @@ class BoxDetails extends Component {
     })
   }
 
-  handleSimType = ({target}) => {
+  handleSimTypeChange = ({target}) => {
     this.setState({
       simType: target.value
     })
   }
 
-  handleExpiration = ({target}) => {
+  handleExpirationChange = ({target}) => {
     this.setState({
       expiration: new Date(target.value).toISOString()
     })
   }
 
-  handleComments = ({target}) => {
+  handleCommentsChange = ({target}) => {
     this.setState({
       comments: target.value
     })
@@ -132,7 +132,7 @@ class BoxDetails extends Component {
               <br />
               <label>
                 Which kind of SIMcard is it? *required
-                <select value={this.state.simType} onChange={this.handleSimType}>
+                <select value={this.state.simType} onChange={this.handleSimTypeChange}>
                   <option value="SIM">Normal SIM</option>
                   <option value="microSIM">microSIM</option>
                   <option value="nanoSIM">nanoSIM</option>
@@ -144,7 +144,7 @@ class BoxDetails extends Component {
                   <input 
                     name="expiration"
                     type="datetime-local"
-                    onChange={this.handleExpiration}
+                    onChange={this.handleExpirationChange}
                   />
               </label>
               <br />
@@ -154,7 +154,7 @@ class BoxDetails extends Component {
 									name="comments"
 									type="text"
 									value={this.state.comments}
-									onChange={this.handleComments}
+									onChange={this.handleCommentsChange}
 								/>
 							</label>
 						</form>
