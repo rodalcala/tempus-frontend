@@ -8,7 +8,8 @@ class BoxDetails extends Component {
     minsLeft: 0,
     dataLeft: 0,
     simType: 'nanoSIM',
-    expiration: new Date().toISOString()
+    expiration: new Date().toISOString(),
+    comments: ''
 	};
 
 	componentDidMount() {
@@ -68,6 +69,13 @@ class BoxDetails extends Component {
     })
   }
 
+  handleComments = ({target}) => {
+    console.log(target.value);
+    this.setState({
+      comments: target.value
+    })
+  }
+
 	renderDetails = () => {
 		// display different details if the box if full
 		if (this.state.box.full) {
@@ -103,7 +111,7 @@ class BoxDetails extends Component {
 					<div className="box-action">
 						<form>
 							<label>
-								How much data -in Mb- left?
+								How much data -in Mb- left? *required
 								<input
 									name="dataLeft"
 									type="number"
@@ -113,7 +121,7 @@ class BoxDetails extends Component {
 							</label>
 							<br />
 							<label>
-								How many mins left?
+								How many mins left? *required
 								<input
 									name="minsLeft"
 									type="number"
@@ -123,7 +131,7 @@ class BoxDetails extends Component {
 							</label>
               <br />
               <label>
-                Which kind of SIMcard is it?
+                Which kind of SIMcard is it? *required
                 <select value={this.state.simType} onChange={this.handleSimType}>
                   <option value="SIM">Normal SIM</option>
                   <option value="microSIM">microSIM</option>
@@ -132,13 +140,23 @@ class BoxDetails extends Component {
               </label>
               <br />
               <label>
-                When is it expiring?
+                When is it expiring? *required
                   <input 
                     name="expiration"
                     type="datetime-local"
                     onChange={this.handleExpiration}
                   />
               </label>
+              <br />
+							<label>
+								Any comments?
+								<input
+									name="comments"
+									type="text"
+									value={this.state.comments}
+									onChange={this.handleComments}
+								/>
+							</label>
 						</form>
 						<Link
 							onClick={this.fillBox}
