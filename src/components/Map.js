@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Map.css';
 import apiKey from '../assets/google.maps.api';
-import BoxDetails from './BoxDetails';
+import BoxPreview from './BoxPreview';
 
 class Map extends Component {
 
@@ -118,7 +118,7 @@ class Map extends Component {
   renderDetails = () => {
     const details = this.state.boxes[this.state.selectedBox]
     if (this.state.selectedBox !== undefined) {
-      return <BoxDetails box={details}/>
+      return <BoxPreview box={details}/>
     }
   }
 

@@ -13,11 +13,13 @@
   z-index: 1;
   top: 82vh;
   left: 5vw;
+  text-decoration: none;
 }
 
 .sim-details h1 {
   font-size: 20px;
   margin: 8px;
+  color: black;
 }
 
 .sim-details h3 {

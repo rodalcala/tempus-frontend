@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Map from './Map';
 import Error from './Error';
 import LogIn from './LogIn';
-import BoxView from './BoxView';
+import BoxDetails from './BoxDetails';
 
 class Router extends Component {
   render() {
@@ -12,7 +12,7 @@ class Router extends Component {
         <Switch>
           <Route exact path="/" component={ Map }/>
           <Route path="/log-in" component={ LogIn }/>
-          <Route path="/box/:id" component={ BoxView }/>
+          <Route path="/box/:id" component={ BoxDetails }/>
           <Route component={ Error } />
         </Switch>
       </BrowserRouter>
