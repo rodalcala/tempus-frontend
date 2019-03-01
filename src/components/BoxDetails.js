@@ -4,7 +4,10 @@ import './BoxDetails.css';
 
 class BoxDetails extends Component {
 	state = {
-		baseUrl: 'http://localhost:4000'
+    baseUrl: 'http://localhost:4000',
+    minsLeft: 0,
+    dataLeft: 0,
+    simType: 'nanoSIM',
 	};
 
 	componentDidMount() {
@@ -42,7 +45,26 @@ class BoxDetails extends Component {
 				simType: 'SIM'
 			})
 		});
-	};
+  };
+  
+  handleInputChange = (event) => {
+    const {target} = event;
+    const {value, name} = target;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleSimType = ({target}) => {
+    this.setState({
+      simType: target.value
+    })
+    console.log(this.state);
+  }
+
+  // handleExpiration = ({target}) => {
+  //   console.log(target.value);
+  // }
 
 	renderDetails = () => {
 		// display different details if the box if full
@@ -77,6 +99,45 @@ class BoxDetails extends Component {
 					</div>
 					<div className="box-data" />
 					<div className="box-action">
+						<form>
+							<label>
+								How much data -in Mb- left?
+								<input
+									name="dataLeft"
+									type="number"
+									value={this.state.dataLeft}
+									onChange={this.handleInputChange}
+								/>
+							</label>
+							<br />
+							<label>
+								How many mins left?
+								<input
+									name="minsLeft"
+									type="number"
+									value={this.state.minsLeft}
+									onChange={this.handleInputChange}
+								/>
+							</label>
+              <br />
+              <label>
+                Which kind of SIMcard is it?
+                <select value={this.state.simType} onChange={this.handleSimType}>
+                  <option value="SIM">Normal SIM</option>
+                  <option value="microSIM">microSIM</option>
+                  <option value="nanoSIM">nanoSIM</option>
+                </select>
+              </label>
+              <br />
+              {/* <label>
+                When is it expiring?
+                  <input 
+                    name="expiration"
+                    type="date"
+                    onChange={this.handleExpiration}
+                  />
+              </label> */}
+						</form>
 						<Link
 							onClick={this.fillBox}
 							to={{
