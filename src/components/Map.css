@@ -16,7 +16,17 @@
   text-decoration: none;
 }
 
+.sim-details {
+  width: 60vw;
+  /* ellipsis seems to not be working */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+}
+
 .sim-details h1 {
+  text-overflow: ellipsis;
   font-size: 20px;
   margin: 8px;
   color: black;

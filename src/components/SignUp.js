@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 class SingUp extends Component {
 	state = {
 		baseUrl: 'http://localhost:4000',
+		email: '',
 		firstName: '',
 		lastName: '',
 		password: '',
@@ -18,13 +19,27 @@ class SingUp extends Component {
 	};
 
 	handleSumbit = (event) => {
-		console.log(
-      this.state.firstName, 
-      this.state.lastName, 
-      this.state.password, 
-      this.state.country
-    );
+    // Sign-up in the server;
     event.preventDefault();
+    fetch(this.state.baseUrl + '/sign-up', {
+			method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				email: this.state.email,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        password: this.state.password,
+        country: this.state.country,
+			})
+    }).then(res => res.json())
+      .then(res => {
+        if (res.errors) {
+          alert(...res.errors)
+        } else {
+          this.props.history.push("/");
+        }
+      });
+    // Sign-in as well so we don't have to sign-in after
 	};
 
 	render() {
@@ -32,6 +47,16 @@ class SingUp extends Component {
 			<div className="signup-container">
         <h1>Sign-up!</h1>
 				<form onSubmit={this.handleSumbit}>
+					<label>
+						email:
+						<input
+							name="email"
+							type="text"
+							value={this.state.email}
+							onChange={this.handlenInputChange}
+						/>
+					</label>
+					<br />
 					<label>
 						First name:
 						<input
