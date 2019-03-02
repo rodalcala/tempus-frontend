@@ -4,12 +4,12 @@ import './BoxDetails.css';
 
 class BoxDetails extends Component {
 	state = {
-    baseUrl: 'http://localhost:4000',
-    minsLeft: 0,
-    dataLeft: 0,
-    simType: 'nanoSIM',
-    expiration: new Date().toISOString(),
-    comments: ''
+		baseUrl: 'http://localhost:4000',
+		minsLeft: 0,
+		dataLeft: 0,
+		simType: 'nanoSIM',
+		expiration: new Date().toISOString(),
+		comments: ''
 	};
 
 	componentDidMount() {
@@ -22,59 +22,70 @@ class BoxDetails extends Component {
 			this.setState({ box: this.props.location.state.box });
 		} else {
 			// if not, fetch it and assign it to the state
-			fetch(this.state.baseUrl + '/box/' + this.props.match.params.id).then((res) => res.json()).then((box) => {
-				this.setState({ box });
-			});
+			fetch(this.state.baseUrl + '/box/' + this.props.match.params.id, {
+				method: 'GET',
+				headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt') }
+			})
+				.then((res) => res.json())
+				.then((box) => {
+					this.setState({ box });
+				});
 		}
 	};
 
 	clearBox = () => {
 		fetch(this.state.baseUrl + '/box/' + this.props.match.params.id, {
 			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' }
+			headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
+      }
 		});
 	};
 
 	fillBox = () => {
-    const {dataLeft, minsLeft, expiration, simType, comments} = this.state;
+		const { dataLeft, minsLeft, expiration, simType, comments } = this.state;
 		fetch(this.state.baseUrl + '/box/' + this.props.match.params.id, {
 			method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('jwt'),
+      },
 			body: JSON.stringify({
 				dataLeft,
 				minsLeft,
 				expiration,
-        simType,
-        comments
+				simType,
+				comments
 			})
 		});
-  };
-  
-  handleInputChange = (event) => {
-    const {target} = event;
-    const {value, name} = target;
-    this.setState({
-      [name]: value
-    })
-  }
+	};
 
-  handleSimTypeChange = ({target}) => {
-    this.setState({
-      simType: target.value
-    })
-  }
+	handleInputChange = (event) => {
+		const { target } = event;
+		const { value, name } = target;
+		this.setState({
+			[name]: value
+		});
+	};
 
-  handleExpirationChange = ({target}) => {
-    this.setState({
-      expiration: new Date(target.value).toISOString()
-    })
-  }
+	handleSimTypeChange = ({ target }) => {
+		this.setState({
+			simType: target.value
+		});
+	};
 
-  handleCommentsChange = ({target}) => {
-    this.setState({
-      comments: target.value
-    })
-  }
+	handleExpirationChange = ({ target }) => {
+		this.setState({
+			expiration: new Date(target.value).toISOString()
+		});
+	};
+
+	handleCommentsChange = ({ target }) => {
+		this.setState({
+			comments: target.value
+		});
+	};
 
 	renderDetails = () => {
 		// display different details if the box if full
@@ -129,25 +140,21 @@ class BoxDetails extends Component {
 									onChange={this.handleInputChange}
 								/>
 							</label>
-              <br />
-              <label>
-                Which kind of SIMcard is it? *required
-                <select value={this.state.simType} onChange={this.handleSimTypeChange}>
-                  <option value="SIM">Normal SIM</option>
-                  <option value="microSIM">microSIM</option>
-                  <option value="nanoSIM">nanoSIM</option>
-                </select>
-              </label>
-              <br />
-              <label>
-                When is it expiring? *required
-                  <input 
-                    name="expiration"
-                    type="datetime-local"
-                    onChange={this.handleExpirationChange}
-                  />
-              </label>
-              <br />
+							<br />
+							<label>
+								Which kind of SIMcard is it? *required
+								<select value={this.state.simType} onChange={this.handleSimTypeChange}>
+									<option value="SIM">Normal SIM</option>
+									<option value="microSIM">microSIM</option>
+									<option value="nanoSIM">nanoSIM</option>
+								</select>
+							</label>
+							<br />
+							<label>
+								When is it expiring? *required
+								<input name="expiration" type="datetime-local" onChange={this.handleExpirationChange} />
+							</label>
+							<br />
 							<label>
 								Any comments?
 								<input

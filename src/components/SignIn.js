@@ -24,6 +24,7 @@ class SignIn extends Component {
     }).then(res => res.text())
       .then(token => {
         localStorage.setItem('jwt', token);
+        this.props.history.push("/");
       });
   }
 

@@ -19,7 +19,6 @@ class SingUp extends Component {
 	};
 
 	handleSumbit = (event) => {
-    // Sign-up in the server;
     event.preventDefault();
     fetch(this.state.baseUrl + '/sign-up', {
 			method: 'POST',
@@ -39,7 +38,6 @@ class SingUp extends Component {
           this.props.history.push("/");
         }
       });
-    // Sign-in as well so we don't have to sign-in after
 	};
 
 	render() {

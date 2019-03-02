@@ -16,7 +16,10 @@ class Map extends Component {
   }
 
   getBoxes() {
-    fetch(this.state.baseUrl + '/boxes')
+    fetch(this.state.baseUrl + '/boxes', {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt')},
+    })
       .then(res => res.json())
       .then(boxes => this.setState({ boxes }))
   }
