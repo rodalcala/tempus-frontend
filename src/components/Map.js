@@ -11,8 +11,12 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    this.getBoxes();
-    this.renderMap();
+    if (localStorage.getItem('jwt')) {
+      this.getBoxes();
+      this.renderMap();
+    } else {
+      this.props.history.push("/sign-in");
+    }
   }
 
   getBoxes() {
@@ -21,6 +25,13 @@ class Map extends Component {
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt')},
     })
       .then(res => res.json())
+      .then(payload => {
+        if (typeof payload === 'string') {
+          this.props.history.push("/sign-in");
+        } else {
+          return payload;
+        }
+      })
       .then(boxes => this.setState({ boxes }))
   }
 
