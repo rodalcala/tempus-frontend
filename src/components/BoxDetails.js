@@ -94,6 +94,7 @@ class BoxDetails extends Component {
 				<div className="details-container">
 					<div className="box-name">
 						<h1>{this.state.box.name}</h1>
+            <p>by Rod</p>
 					</div>
 					<div className="box-data" />
 					<div className="box-action">
@@ -185,7 +186,15 @@ class BoxDetails extends Component {
 	render() {
 		return (
 			<div className="box-container">
-				<div className="header-container">{this.props.match.params.id}</div>
+        <div className="header-container">
+          <div className="back-button-container">
+            <img className="back-button" src={require('./../assets/back.png')} alt="back"/>
+          </div>
+          <div className="option-buttons">
+            <img className="directions-button" src={require('./../assets/pedestrian-walking.png')} alt="directions"/>
+            <img className="share-button" src={require('./../assets/share.png')} alt="share"/>
+          </div>
+        </div>
 				<div className="image-container" />
 				{this.state.box ? this.renderDetails() : 'Loading...'}
 			</div>

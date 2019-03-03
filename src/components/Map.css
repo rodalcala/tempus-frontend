@@ -8,12 +8,16 @@
   justify-content: space-between;
   height: 15vh;
   width: 90vw;
-  background-color: blanchedalmond;
+  background-image: linear-gradient(to bottom right, rgb(0, 226, 240), rgb(0, 114, 240));
   position: fixed;
   z-index: 1;
   top: 82vh;
   left: 5vw;
   text-decoration: none;
+  border-radius: 0.5vh;
+  border-color: rgb(0, 114, 240);
+  border-style: solid;
+  border-width: 0.2vw;
 }
 
 .sim-details {
@@ -27,13 +31,13 @@
 
 .sim-details h1 {
   text-overflow: ellipsis;
-  font-size: 20px;
+  font-size: 5vw;
   margin: 8px;
   color: black;
 }
 
 .sim-details h3 {
-  font-size: 14px;
+  font-size: 3.2vw;
   margin: 8px;
 }
 
@@ -45,10 +49,17 @@
   color: navy;
 }
 
-.sim-details h4 {
-  font-size: 10px;
+.sim-details h2 {
+  font-size: 3.5vw;
   margin: 8px;
-  color: gray
+  margin-top: 10px;
+  color: whitesmoke;
+}
+
+.sim-details h4 {
+  font-size: 2.5vw;
+  margin: 8px;
+  color: whitesmoke;
 }
 
 .sim-image {
@@ -62,4 +73,15 @@
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+}
+
+.add-image {
+  width: 75px;
+  height: 75px;
+}
+
+.sim-details h5 {
+  font-size: 2.5vw;
+  margin: 0px;
+  color: whitesmoke;
 }
