@@ -23,8 +23,12 @@ class SignIn extends Component {
       headers: { 'Authorization': 'Basic ' + payload},
     }).then(res => res.text())
       .then(token => {
-        localStorage.setItem('jwt', token);
-        this.props.history.push("/");
+        if (token === 'Invalid email or password') {
+          alert(token);
+        } else {
+          localStorage.setItem('jwt', token);
+          this.props.history.push("/");
+        }
       });
   }
 
@@ -59,11 +63,5 @@ class SignIn extends Component {
     )
   }
 }
-// () => (
-//   <div>
-//     <h1>Log-in page under construction</h1>
-//     <h2>Don't have an account? <Link to="/sign-up">Sing up for free!</Link></h2>
-//   </div>
-// )
 
 export default SignIn;
