@@ -21,12 +21,16 @@ class SignIn extends Component {
     fetch(this.state.baseUrl + '/sign-in', {
 			method: 'GET',
       headers: { 'Authorization': 'Basic ' + payload},
-    }).then(res => res.text())
-      .then(token => {
-        if (token === 'Invalid email or password') {
-          alert(token);
+    }).then(res => res.json())
+      .then(res => {
+        if (res === 'Invalid email or password') {
+          alert(res);
         } else {
-          localStorage.setItem('jwt', token);
+          localStorage.setItem('jwt', res.token);
+          localStorage.setItem('user_firstName', res.firstName);
+          localStorage.setItem('user_lastNamee', res.lastName);
+          localStorage.setItem('user_email', res.email);
+          localStorage.setItem('user_country', res.country);
           this.props.history.push("/");
         }
       });
