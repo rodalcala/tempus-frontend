@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 
 class SingUp extends Component {
 	state = {
@@ -51,7 +50,8 @@ class SingUp extends Component {
 							name="email"
 							type="text"
 							value={this.state.email}
-							onChange={this.handlenInputChange}
+              onChange={this.handlenInputChange}
+              required
 						/>
 					</label>
 					<br />
@@ -62,6 +62,7 @@ class SingUp extends Component {
 							type="text"
 							value={this.state.firstName}
 							onChange={this.handlenInputChange}
+              required
 						/>
 					</label>
 					<br />
@@ -72,6 +73,7 @@ class SingUp extends Component {
 							type="text"
 							value={this.state.lastName}
 							onChange={this.handlenInputChange}
+              required
 						/>
 					</label>
 					<br />
@@ -82,6 +84,7 @@ class SingUp extends Component {
 							type="text"
 							value={this.state.password}
 							onChange={this.handlenInputChange}
+              required
 						/>
 					</label>
 					<br />
