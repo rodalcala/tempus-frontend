@@ -6,6 +6,7 @@ import SignIn from './SignIn';
 import BoxDetails from './BoxDetails';
 import Feedback from './Feedback';
 import SingUp from './SignUp';
+import SingOut from './SignOut';
 
 class Router extends Component {
 	render() {
@@ -17,6 +18,7 @@ class Router extends Component {
 					<Route path="/box/:id" component={BoxDetails} />
 					<Route path="/feedback" component={Feedback} />
           <Route path="/sign-up" component={SingUp}/>
+          <Route path="/sign-out" component={SingOut}/>
 					<Route component={Error} />
 				</Switch>
 			</BrowserRouter>
