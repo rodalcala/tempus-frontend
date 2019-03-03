@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class SingOut extends Component {
   componentDidMount() {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
   }
   render() {
     return <h1>You've succesfully signed out!</h1>

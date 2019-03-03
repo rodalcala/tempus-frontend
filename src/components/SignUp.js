@@ -34,6 +34,11 @@ class SingUp extends Component {
         if (res.errors) {
           alert(...res.errors)
         } else {
+          localStorage.setItem('jwt', res.token);
+          localStorage.setItem('user_firstName', res.firstName);
+          localStorage.setItem('user_lastNamee', res.lastName);
+          localStorage.setItem('user_email', res.email);
+          localStorage.setItem('user_country', res.country);
           this.props.history.push("/");
         }
       });
