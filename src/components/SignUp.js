@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SignUp.css'
 
 class SingUp extends Component {
 	state = {
@@ -7,7 +8,7 @@ class SingUp extends Component {
 		firstName: '',
 		lastName: '',
 		password: '',
-		country: 'Spain'
+		country: 'Spain',
 	};
 
 	handlenInputChange = ({ target }) => {
@@ -42,68 +43,83 @@ class SingUp extends Component {
           this.props.history.push("/");
         }
       });
+  };
+  
+  handleCountry = ({ target }) => {
+		this.setState({
+			country: target.value
+		});
 	};
 
 	render() {
 		return (
-			<div className="signup-container">
-        <h1>Sign-up!</h1>
-				<form onSubmit={this.handleSumbit}>
-					<label>
-						email:
-						<input
-							name="email"
-							type="text"
-							value={this.state.email}
-              onChange={this.handlenInputChange}
-              required
-						/>
-					</label>
-					<br />
-					<label>
-						First name:
-						<input
-							name="firstName"
-							type="text"
-							value={this.state.firstName}
-							onChange={this.handlenInputChange}
-              required
-						/>
-					</label>
-					<br />
-					<label>
-						Last name:
-						<input
-							name="lastName"
-							type="text"
-							value={this.state.lastName}
-							onChange={this.handlenInputChange}
-              required
-						/>
-					</label>
-					<br />
-					<label>
-						Password:
-						<input
-							name="password"
-							type="text"
-							value={this.state.password}
-							onChange={this.handlenInputChange}
-              required
-						/>
-					</label>
-					<br />
-					<label>
-						Counry of origin:
-						<select value={this.state.simType} onChange={this.handleSimType}>
-							<option value="Spain">Spain</option>
-							<option value="Argentina">Argentina</option>
-							<option value="Others">Others</option>
-						</select>
-					</label>
-					<br />
-					<input name="sumbit" type="submit" value="Submit" />
-				</form>
+      <div className="sign-up-container">
+        <div className="header-container">
+          <div className="title-container">
+            <p>Sign-up!</p>
+          </div>
+        </div>
+        <div className="signup-container">
+          <div className="form-container">
+            <form>
+              <label>
+                <p>email:</p>
+                <input
+                  name="email"
+                  type="text"
+                  value={this.state.email}
+                  onChange={this.handlenInputChange}
+                  required
+                />
+              </label>
+              <br />
+              <label>
+                <p>First name:</p>
+                <input
+                  name="firstName"
+                  type="text"
+                  value={this.state.firstName}
+                  onChange={this.handlenInputChange}
+                  required
+                />
+              </label>
+              <br />
+              <label>
+                <p>Last name:</p>
+                <input
+                  name="lastName"
+                  type="text"
+                  value={this.state.lastName}
+                  onChange={this.handlenInputChange}
+                  required
+                />
+              </label>
+              <br />
+              <label>
+                <p>Password:</p>
+                <input
+                  name="password"
+                  type="text"
+                  value={this.state.password}
+                  onChange={this.handlenInputChange}
+                  required
+                />
+              </label>
+              <br />
+              <label>
+                <p>Counry of origin:</p>
+                <select value={this.state.simType} onChange={this.handleCountry}>
+                  <option value="Spain">Spain 🇪🇸</option>
+                  <option value="Argentina">Argentina 🇦🇷</option>
+                  <option value="Others">Others</option>
+                </select>
+              </label>
+            </form>
+          </div>
+          <div className="action-container">
+           <p onClick={this.handleSumbit} className="action-botton">Submit</p>
+          </div>
+        </div>
 			</div>
 		);
 	}

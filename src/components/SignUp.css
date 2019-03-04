@@ -1,0 +1,58 @@
+.title-container {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-container p {
+  font-size: 2.5vh;
+  color: lightgray;
+}
+
+.signup-container {
+  background-color: rgb(240, 240, 240);
+  width: 100vw;
+  height: 91vh;
+}
+
+.form-container {
+  border-bottom: 0.01vw solid;
+  border-color: rgb(190, 190, 190);
+  background-color: whitesmoke;
+  margin-bottom: 1.5vw;
+  padding: 4vw;
+}
+
+.action-container {
+  padding: 4vw;
+  border-bottom: 0.01vw solid;
+  border-top: 0.01vw solid;
+  border-color: rgb(190, 190, 190);
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-container p {
+  margin: 0;
+}
+
+.form-container p {
+  margin: 0;
+  margin-top: 1vh;
+  margin-bottom: 0.3vh;
+  font-weight: bold;
+}
+
+.form-container select {
+  font-size: 2.5vh;
+  height: 4vh;
+}
+
+.form-container input {
+  font-size: 2vh;
+  height: 3.5vh;
+}
