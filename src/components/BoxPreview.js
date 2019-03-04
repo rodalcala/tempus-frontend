@@ -18,12 +18,24 @@ class BoxPreview extends Component {
 
   renderExpiration = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const expiration = new Date(this.props.box.expiration);
+    const lastNum = (expiration.getDate()).toString().split('').pop();
+    let sufix;
+    if (lastNum === '1') {
+      sufix = 'st';
+    } else if (lastNum === '2') {
+      sufix = 'nd';
+    } else if (lastNum === '3') {
+      sufix = 'rd';
+    } else {
+      sufix = 'th';
+    }
     if (this.props.box.expiration) {
       return (
         <div>
           <h3 className="data">{this.props.box.dataLeft + ' Mb of data available'}</h3>
           <h3 className="mins">{this.props.box.minsLeft + ' free mins available'}</h3>
-          <h4>{'Expiring on the ' + (new Date(this.props.box.expiration)).getDate() + ' of ' + months[(new Date(this.props.box.expiration)).getMonth()]}</h4>
+          <h4>{'Expiring on the ' + expiration.getDate() + sufix + ' of ' + months[expiration.getMonth()]}</h4>
         </div>
       )
     } else {
