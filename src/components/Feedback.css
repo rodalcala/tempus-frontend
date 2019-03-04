@@ -1,4 +1,12 @@
-.feedback-button {
+.Feedback-header-container {
+  display: flex;
+  background-color: rgb(0, 114, 240);
+  width: 100vw;
+  height: 9vh;
+  justify-content: space-between;
+}
+
+.Feedback-feedback-button {
   height: 9vh;
   line-height: 9vh;
   text-align: center;
@@ -7,7 +15,7 @@
   color: lightgray;
 }
 
-.send-button {
+.Feedback-send-button {
   height: 9vh;
   line-height: 9vh;
   text-align: center;
@@ -16,53 +24,53 @@
   margin-right: 2vh;
 }
 
-.send-button a {
+.Feedback-send-button a {
   color: whitesmoke;
   text-decoration: none;
 }
 
-.empty-button {
+.Feedback-empty-button {
   margin-left: 9vh;
 }
 
-.vote-container {
+.Feedback-vote-container {
   border-bottom: 0.01vw solid;
   border-color: rgb(190, 190, 190);
   background-color: whitesmoke;
   margin-bottom: 1.5vw;
 }
 
-.vote-container h3 {
+.Feedback-vote-container h3 {
   padding: 4vw;
   padding-bottom: 1vw;
   margin: 0;
   text-align: center;
 }
 
-.options-container {
+.Feedback-options-container {
   background-color: rgb(240, 240, 240);
   width: 100vw;
   height: 91vh;
 }
 
-.thumbs-container {
+.Feedback-thumbs-container {
   display: flex;
   justify-content: space-evenly;
 }
 
-.thumbs-up {
+.Feedback-thumbs-up {
   width: 20vh;
   height: 20vh;
   padding: 2vh;
 }
 
-.thumbs-down {
+.Feedback-thumbs-down {
   width: 20vh;
   height: 20vh;
   padding: 2vh;
 }
 
-.comment-container {
+.Feedback-comment-container {
   border-top: 0.01vw solid;
   border-bottom: 0.01vw solid;
   border-color: rgb(190, 190, 190);
@@ -72,7 +80,7 @@
   justify-content: space-evenly;
 }
 
-.comment-container input {
+.Feedback-comment-container input {
   margin: 2vh;
   width: 80vw;
   font-size: 2.5vh;

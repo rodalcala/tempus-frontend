@@ -3,7 +3,7 @@
   width: 100vw;
 }
 
-.details-conteiner {
+.Map-details-conteiner {
   display: flex;
   justify-content: space-between;
   height: 15vh;
@@ -20,7 +20,7 @@
   border-width: 0.2vw;
 }
 
-.sim-details {
+.Map-sim-details {
   width: 60vw;
   /* ellipsis seems to not be working */
   text-overflow: ellipsis;
@@ -29,45 +29,45 @@
   display: block;
 }
 
-.sim-details h1 {
+.Map-sim-details h1 {
   text-overflow: ellipsis;
   font-size: 5vw;
   margin: 8px;
   color: black;
 }
 
-.sim-details h3 {
+.Map-sim-details h3 {
   font-size: 3.2vw;
   margin: 8px;
 }
 
-.data {
+.Map-data {
   color: rgb(80, 130, 10);
 }
 
-.mins {
+.Map-mins {
   color: navy;
 }
 
-.sim-details h2 {
+.Map-sim-details h2 {
   font-size: 3.5vw;
   margin: 8px;
   margin-top: 10px;
   color: whitesmoke;
 }
 
-.sim-details h4 {
+.Map-sim-details h4 {
   font-size: 2.5vw;
   margin: 8px;
   color: whitesmoke;
 }
 
-.sim-image {
+.Map-sim-image {
   width: 70px;
   height: 76px;
 }
 
-.sim-type {
+.Map-sim-type {
   height: 100%;
   display: flex;
   align-items: center;
@@ -75,12 +75,12 @@
   margin-right: 20px;
 }
 
-.add-image {
+.Map-add-image {
   width: 75px;
   height: 75px;
 }
 
-.sim-details p {
+.Map-sim-details p {
   font-size: 2.5vw;
   margin: 0px;
   color: whitesmoke;

@@ -1,4 +1,12 @@
-.title-container {
+.SignUp-header-container {
+  display: flex;
+  background-color: rgb(0, 114, 240);
+  width: 100vw;
+  height: 9vh;
+  justify-content: space-between;
+}
+
+.SignUp-title-container {
   height: 100%;
   width: 100vw;
   display: flex;
@@ -6,18 +14,18 @@
   justify-content: center;
 }
 
-.title-container p {
+.SignUp-title-container p {
   font-size: 2.5vh;
   color: lightgray;
 }
 
-.signup-container {
+.SignUp-signup-container {
   background-color: rgb(240, 240, 240);
   width: 100vw;
   height: 91vh;
 }
 
-.form-container {
+.SignUp-form-container {
   border-bottom: 0.01vw solid;
   border-color: rgb(190, 190, 190);
   background-color: whitesmoke;
@@ -25,7 +33,7 @@
   padding: 4vw;
 }
 
-.action-container {
+.SignUp-action-container {
   padding: 4vw;
   border-bottom: 0.01vw solid;
   border-top: 0.01vw solid;
@@ -36,23 +44,23 @@
   justify-content: center;
 }
 
-.action-container p {
+.SignUp-action-container p {
   margin: 0;
 }
 
-.form-container p {
+.SignUp-form-container p {
   margin: 0;
   margin-top: 1vh;
   margin-bottom: 0.3vh;
   font-weight: bold;
 }
 
-.form-container select {
+.SignUp-form-container select {
   font-size: 2.5vh;
   height: 4vh;
 }
 
-.form-container input {
+.SignUp-form-container input {
   font-size: 2vh;
   height: 3.5vh;
 }

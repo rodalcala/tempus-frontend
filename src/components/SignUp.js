@@ -53,14 +53,14 @@ class SingUp extends Component {
 
 	render() {
 		return (
-      <div className="sign-up-container">
-        <div className="header-container">
-          <div className="title-container">
+      <div className="SignUp-sign-up-container">
+        <div className="SignUp-header-container">
+          <div className="SignUp-title-container">
             <p>Sign-up!</p>
           </div>
         </div>
-        <div className="signup-container">
-          <div className="form-container">
+        <div className="SignUp-signup-container">
+          <div className="SignUp-form-container">
             <form>
               <label>
                 <p>email:</p>
@@ -116,8 +116,8 @@ class SingUp extends Component {
               </label>
             </form>
           </div>
-          <div className="action-container">
-           <p onClick={this.handleSumbit} className="action-botton">Submit</p>
+          <div className="SignUp-action-container">
+           <p onClick={this.handleSumbit} className="SignUp-action-botton">Submit</p>
           </div>
         </div>
 			</div>

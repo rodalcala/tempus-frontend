@@ -23,23 +23,23 @@ class Feedback extends Component {
 
 	render() {
 		return (
-			<div className="feedback-container">
-				<div className="header-container">
-					<div className="empty-button" />
-					<div className="feedback-button">Feedback</div>
-					<div className="send-button">
+			<div className="Feedback-feedback-container">
+				<div className="Feedback-header-container">
+					<div className="Feedback-empty-button" />
+					<div className="Feedback-feedback-button">Feedback</div>
+					<div className="Feedback-send-button">
 						<Link to="/">Send</Link>
 					</div>
 				</div>
-				<div className="options-container">
-					<div className="vote-container">
+				<div className="Feedback-options-container">
+					<div className="Feedback-vote-container">
 						<div>
 							<h3>How was your experience?</h3>
 						</div>
-						<div className="thumbs-container">
+						<div className="Feedback-thumbs-container">
               <img
                 name="thumbs-up"
-                className="thumbs-up"
+                className="Feedback-thumbs-up"
                 onClick={this.handleVote}
                 src={require('./../assets/thumbs-up.png')}
                 alt="thumbs-up"
@@ -47,13 +47,13 @@ class Feedback extends Component {
 							<img
                 name="thumbs-down"
                 onClick={this.handleVote}
-								className="thumbs-down"
+								className="Feedback-thumbs-down"
 								src={require('./../assets/thumbs-down.png')}
 								alt="thumbs-down"
 							/>
 						</div>
 					</div>
-					<div className="comment-container">
+					<div className="Feedback-comment-container">
             <input
               name="comments"
               type="text"

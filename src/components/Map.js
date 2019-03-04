@@ -138,7 +138,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div className="Maps">
+      <div className="Map-Maps">
         {this.state.boxes ? this.renderDetails() : 'Loading...'}
         <div id="map"></div>
       </div>

@@ -95,15 +95,15 @@ class BoxDetails extends Component {
 		// display different details if the box if full
 		if (this.state.box.full) {
 			return (
-				<div className="details-container">
-					<div className="box-name">
+				<div className="BoxDetails-details-container">
+					<div className="BoxDetails-box-name">
 						<h1>{this.state.box.name}</h1>
             <p>by Rod</p>
 					</div>
-					<div className="box-data" />
-					<div className="box-action">
+					<div className="BoxDetails-box-data" />
+					<div className="BoxDetails-box-action">
 						<Link
-              className="action-botton"
+              className="BoxDetails-action-botton"
 							onClick={this.clearBox}
 							to={{
 								pathname: '/feedback',
@@ -120,12 +120,12 @@ class BoxDetails extends Component {
 		} else {
 			// or if it's empty
 			return (
-				<div className="details-container">
-					<div className="box-name">
+				<div className="BoxDetails-details-container">
+					<div className="BoxDetails-box-name">
 						<h1>{this.state.box.name}</h1>
             <p>by Rod</p>
 					</div>
-					<div className="box-data">
+					<div className="BoxDetails-box-data">
 						<form>
 							<label>
 								How much data -in Mb- left? *required
@@ -172,9 +172,9 @@ class BoxDetails extends Component {
 							</label>
 						</form>
 					</div>
-          <div className="box-action">
+          <div className="BoxDetails-box-action">
 						<Link
-              className="action-botton"
+              className="BoxDetails-action-botton"
 							onClick={this.fillBox}
 							to={{
 								pathname: '/feedback',
@@ -193,17 +193,17 @@ class BoxDetails extends Component {
 
 	render() {
 		return (
-			<div className="box-container">
-        <div className="header-container">
-          <div className="back-button-container">
-            <img className="back-button" src={require('./../assets/back.png')} onClick={this.handleBackButton} alt="back"/>
+			<div className="BoxDetails-box-container">
+        <div className="BoxDetails-header-container">
+          <div className="BoxDetails-back-button-container">
+            <img className="BoxDetails-back-button" src={require('./../assets/back.png')} onClick={this.handleBackButton} alt="back"/>
           </div>
-          <div className="option-buttons">
-            <img className="directions-button" src={require('./../assets/pedestrian-walking.png')} alt="directions"/>
-            <img className="share-button" src={require('./../assets/share.png')} alt="share"/>
+          <div className="BoxDetails-option-buttons">
+            <img className="BoxDetails-directions-button" src={require('./../assets/pedestrian-walking.png')} alt="directions"/>
+            <img className="BoxDetails-share-button" src={require('./../assets/share.png')} alt="share"/>
           </div>
         </div>
-				<div className="image-container" />
+				<div className="BoxDetails-image-container" />
 				{this.state.box ? this.renderDetails() : 'Loading...'}
 			</div>
 		);

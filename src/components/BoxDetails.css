@@ -1,9 +1,9 @@
-.box-container {
+.BoxDetails-box-container {
   display: flex;
   flex-direction: column;
 }
 
-.header-container {
+.BoxDetails-header-container {
   display: flex;
   background-color: rgb(0, 114, 240);
   width: 100vw;
@@ -11,7 +11,7 @@
   justify-content: space-between;
 }
 
-.image-container {
+.BoxDetails-image-container {
   background-image: url("./../assets/ping-pong.jpg");
   background-size: 100%;
   background-color: blanchedalmond;
@@ -20,25 +20,25 @@
   height: 28vh;
 }
 
-.details-container {
+.BoxDetails-details-container {
   background-color: rgb(240, 240, 240);
   width: 100vw;
   height: 63vh;
 }
 
-.back-button-container {
+.BoxDetails-back-button-container {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.back-button {
+.BoxDetails-back-button {
   width: 10vw;
   height: 10vw;
 }
 
-.option-buttons {
+.BoxDetails-option-buttons {
   height: 100%;
   display: flex;
   align-items: center;
@@ -46,19 +46,19 @@
   margin-right: 5vw;
 }
 
-.directions-button {
+.BoxDetails-directions-button {
   width: 10vw;
   height: 10vw;
   margin-left: 4vw;
 }
 
-.share-button {
+.BoxDetails-share-button {
   width: 10vw;
   height: 10vw;
   margin-left: 4vw;
 }
 
-.box-name {
+.BoxDetails-box-name {
   padding: 4vw;
   border-bottom: 0.01vw solid;
   border-color: rgb(190, 190, 190);
@@ -66,11 +66,11 @@
   margin-bottom: 1.5vw;
 }
 
-.box-name h1 {
+.BoxDetails-box-name h1 {
   margin: 0;
 }
 
-.box-name p {
+.BoxDetails-box-name p {
   font-size: 3.6vw;
   margin: 0;
   color: dimgrey;
@@ -78,7 +78,7 @@
   font-style: italic;
 }
 
-.box-data {
+.BoxDetails-box-data {
   padding: 4vw;
   border-bottom: 0.01vw solid;
   border-top: 0.01vw solid;
@@ -87,7 +87,7 @@
   margin-bottom: 1.5vw;
 }
 
-.box-action {
+.BoxDetails-box-action {
   padding: 4vw;
   border-bottom: 0.01vw solid;
   border-top: 0.01vw solid;
@@ -98,7 +98,7 @@
   justify-content: center;
 }
 
-.action-botton {
+.BoxDetails-action-botton {
   height: 6vh;
   line-height: 6vh;
   width: 85vw;
@@ -112,7 +112,7 @@
   font-weight: bold;
 }
 
-.action-botton:hover {
+.BoxDetails-action-botton:hover {
   background-image: none;
   background-color: rgb(0, 226, 240);
 }
