@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Map from './Map';
-import Error from './Error';
-import SignIn from './SignIn';
-import BoxDetails from './BoxDetails';
-import Feedback from './Feedback';
-import SingUp from './SignUp';
-import SingOut from './SignOut';
+import Map from './components/Map';
+import Error from './components/Error';
+import SignIn from './components/SignIn';
+import BoxDetails from './components/BoxDetails';
+import Feedback from './components/Feedback';
+import SingUp from './components/SignUp';
+import SingOut from './components/SignOut';
 
 class Router extends Component {
 	render() {

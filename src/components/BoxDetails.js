@@ -59,7 +59,11 @@ class BoxDetails extends Component {
 				comments
 			})
 		});
-	};
+  };
+  
+  handleBackButton = () => {
+    this.props.history.push("/");
+  }
 
 	handleInputChange = (event) => {
 		const { target } = event;
@@ -99,6 +103,7 @@ class BoxDetails extends Component {
 					<div className="box-data" />
 					<div className="box-action">
 						<Link
+              className="action-botton"
 							onClick={this.clearBox}
 							to={{
 								pathname: '/feedback',
@@ -118,9 +123,9 @@ class BoxDetails extends Component {
 				<div className="details-container">
 					<div className="box-name">
 						<h1>{this.state.box.name}</h1>
+            <p>by Rod</p>
 					</div>
-					<div className="box-data" />
-					<div className="box-action">
+					<div className="box-data">
 						<form>
 							<label>
 								How much data -in Mb- left? *required
@@ -166,7 +171,10 @@ class BoxDetails extends Component {
 								/>
 							</label>
 						</form>
+					</div>
+          <div className="box-action">
 						<Link
+              className="action-botton"
 							onClick={this.fillBox}
 							to={{
 								pathname: '/feedback',
@@ -177,7 +185,7 @@ class BoxDetails extends Component {
 						>
 							Left it!
 						</Link>
-					</div>
+          </div>
 				</div>
 			);
 		}
@@ -188,7 +196,7 @@ class BoxDetails extends Component {
 			<div className="box-container">
         <div className="header-container">
           <div className="back-button-container">
-            <img className="back-button" src={require('./../assets/back.png')} alt="back"/>
+            <img className="back-button" src={require('./../assets/back.png')} onClick={this.handleBackButton} alt="back"/>
           </div>
           <div className="option-buttons">
             <img className="directions-button" src={require('./../assets/pedestrian-walking.png')} alt="directions"/>

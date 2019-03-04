@@ -1,0 +1,83 @@
+.feedback-button {
+  height: 9vh;
+  line-height: 9vh;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.5vh;
+  color: lightgray;
+}
+
+.send-button {
+  height: 9vh;
+  line-height: 9vh;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 3vh;
+  margin-right: 2vh;
+}
+
+.send-button a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.empty-button {
+  margin-left: 9vh;
+}
+
+.vote-container {
+  border-bottom: 0.01vw solid;
+  border-color: rgb(190, 190, 190);
+  background-color: whitesmoke;
+  margin-bottom: 1.5vw;
+}
+
+.vote-container h3 {
+  padding: 4vw;
+  padding-bottom: 1vw;
+  margin: 0;
+  text-align: center;
+}
+
+.options-container {
+  background-color: rgb(240, 240, 240);
+  width: 100vw;
+  height: 91vh;
+}
+
+.thumbs-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.thumbs-up {
+  width: 20vh;
+  height: 20vh;
+  padding: 2vh;
+}
+
+.thumbs-down {
+  width: 20vh;
+  height: 20vh;
+  padding: 2vh;
+}
+
+.comment-container {
+  border-top: 0.01vw solid;
+  border-bottom: 0.01vw solid;
+  border-color: rgb(190, 190, 190);
+  background-color: whitesmoke;
+  margin-bottom: 1.5vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.comment-container input {
+  margin: 2vh;
+  width: 80vw;
+  font-size: 2.5vh;
+  border: 0.01vw solid;
+  border-radius: 1vh;
+  padding: 0.5vh;
+  padding-left: 1.5vh;
+}

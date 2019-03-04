@@ -27,7 +27,7 @@ class BoxPreview extends Component {
         </div>
       )
     } else {
-      return <h2>Empty box ready to<br />be filled up with 💞<br /><h5>(and SIM cards)</h5></h2> // eslint-disable-line
+      return <h2>Empty box ready to<br />be filled up with 💞<br /><p>(and SIM cards)</p></h2> // eslint-disable-line
     }
   }
 
