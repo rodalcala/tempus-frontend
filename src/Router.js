@@ -7,6 +7,7 @@ import BoxDetails from './components/BoxDetails';
 import Feedback from './components/Feedback';
 import SingUp from './components/SignUp';
 import SingOut from './components/SignOut';
+import ListView from './components/ListView';
 
 class Router extends Component {
 	render() {
@@ -14,10 +15,11 @@ class Router extends Component {
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/" component={Map} />
-					<Route path="/sign-in" component={SignIn} />
+          <Route path="/listview" component={ListView}/>
 					<Route path="/box/:id" component={BoxDetails} />
 					<Route path="/feedback" component={Feedback} />
           <Route path="/sign-up" component={SingUp}/>
+					<Route path="/sign-in" component={SignIn} />
           <Route path="/sign-out" component={SingOut}/>
 					<Route component={Error} />
 				</Switch>
