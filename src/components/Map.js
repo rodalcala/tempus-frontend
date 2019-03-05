@@ -12,15 +12,15 @@ class Map extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('jwt')) {
-      this.getBoxes();
-      this.renderMap();
+      this.getBoxes()
+        .then(() => this.renderMap());
     } else {
       this.props.history.push("/sign-in");
     }
   }
 
   getBoxes() {
-    fetch(this.state.baseUrl + '/boxes', {
+    return fetch(this.state.baseUrl + '/boxes', {
       method: 'GET',
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt')},
     })
@@ -36,8 +36,11 @@ class Map extends Component {
   }
 
   renderMap = () => {
-    loadScript(`https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`);
-    window.initMap = this.initMap;
+    if (window.initMap) this.initMap();
+    else {
+      loadScript(`https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`);
+      window.initMap = this.initMap;
+    }
   }
 
   initMap = () => {
