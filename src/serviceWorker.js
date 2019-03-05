@@ -43,26 +43,67 @@ export function register(config) {
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit http://bit.ly/CRA-PWA'
-          );
-        });
-      } else {
-        // Is not localhost. Just register service worker
-        registerValidSW(swUrl, config);
-      }
-    });
+            'worker. To learn more, visit http://bit.ly/CRA-PWA'
+            );
+          });
+        } else {
+          // Is not localhost. Just register service worker
+          registerValidSW(swUrl, config);
+        }
+      });
+    }
   }
-}
-
-function registerValidSW(swUrl, config) {
-  navigator.serviceWorker
+  
+  function registerValidSW(swUrl, config) {
+    navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+      // window.addEventListener('fetch', event => {
+      //   console.log('Fetch event listener');
+      //   if (event.request.method !== 'GET') return;
+      
+      //   event.respondWith(async () => {
+      //     const cache = await caches.open('v2')
+      //       .then(() => console.log('cache in promise:', cache));
+      //     const cachedResponse = await cache.match(event.request)
+      //       .then(() => console.log('cachedResponse in promise:', cache));
+      //     console.log('cache:', cache);
+      //     console.log('cachedResponse:', cache);
+      
+      //     if (cachedResponse) {
+      //       event.waitUntil(cache.add(event.request));
+      //       return cachedResponse;
+      //     }
+      //     return fetch(event.request);
+      //   });
+      // });
+
+      // window.addEventListener('sync', function(event) {
+      //   console.log('Background sync fired', event);
+      // });
+      registration.onfetch = event => {
+        console.log('onfetch', event)
+        event.respondWith(
+          caches.match(event.request)
+          .then(function(cachedFiles) {
+              if(cachedFiles) {
+                  return cachedFiles;
+              } else {
+                  return fetch(event.request);
+              }
+          })
+          .catch(function(err) {
+              console.log('err in fetch ', err);
+          })
+      );
+      }
+      
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
         }
+
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {

@@ -17,7 +17,7 @@ class BoxDetails extends Component {
 	}
 
 	handleBoxData = () => {
-		// if the boxData comes from the on the props, reassign it to the state
+		// if the boxData comes on the props, reassign it to the state
 		if (this.props.location.state) {
 			this.setState({ box: this.props.location.state.box });
 		} else {
