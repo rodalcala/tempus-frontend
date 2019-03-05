@@ -10,3 +10,79 @@
   height: 9vh;
   justify-content: space-between;
 }
+
+.ListView-boxes-container {
+  overflow: scroll;
+  height: 91vh;
+  background-color: whitesmoke;
+}
+
+.ListView-box-container {
+  color: black;
+  text-decoration: none;
+  width: 100vw;
+  height: 14vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  margin-bottom: 0.5vh;
+  border-top: 0.01vw solid;
+  border-color: rgb(190, 190, 190);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.ListView-sim-details {
+  width: 60vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+}
+
+.ListView-box-container h1 {
+  font-size: 3vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.ListView-box-container p {
+  font-size: 2.5vw;
+  margin: 0px;
+  color: gray;
+}
+
+.ListView-box-container h2 {
+  font-size: 3.5vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.ListView-box-container h3 {
+  font-size: 3vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.ListView-box-container h4 {
+  font-size: 2.5vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  color: gray;
+}
+
+.ListView-data {
+  color: rgb(80, 130, 10);
+}
+
+.ListView-mins {
+  color: navy;
+}
+
+.ListView-sim-type {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5vh;
+}
