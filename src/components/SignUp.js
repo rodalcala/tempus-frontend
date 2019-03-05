@@ -109,8 +109,8 @@ class SingUp extends Component {
               <label>
                 <p>Counry of origin:</p>
                 <select value={this.state.simType} onChange={this.handleCountry}>
-                  <option value="Spain">Spain <span role="img" aria-label="spain">🇪🇸</span></option>
-                  <option value="Argentina">Argentina <span role="img" aria-label="argentina">🇦🇷</span></option>
+                  <option value="Spain">Spain {String.fromCodePoint(0x1F1EA, 0x1F1F8)}</option>
+                  <option value="Argentina">Argentina {String.fromCodePoint(0x1F1E6, 0x1F1F7)}</option>
                   <option value="Others">Others</option>
                 </select>
               </label>

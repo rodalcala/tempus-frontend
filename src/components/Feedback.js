@@ -5,7 +5,7 @@ import './Feedback.css';
 class Feedback extends Component {
   state = {
     vote: null,
-    comments: 'Any comments?',
+    comments: '',
   }
 
   handleVote = ({ target }) => {
@@ -57,6 +57,7 @@ class Feedback extends Component {
             <input
               name="comments"
               type="text"
+              placeHolder="Any comments?"
               value={this.state.comments}
               onChange={this.handleCommentsChange}
             />

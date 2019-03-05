@@ -12,7 +12,7 @@ class BoxPreview extends Component {
     } else if (simType === 'nanoSIM') {
       return <img className="Map-sim-image" src={require('./../assets/sizes-nanoSIM.png')} alt="nanoSIM size"/>
     } else {
-      return <img className="add-image" src={require('./../assets/plus.png')} alt="add"/>
+      return <img className="Map-add-image" src={require('./../assets/plus.png')} alt="add"/>
     }
   }
 
