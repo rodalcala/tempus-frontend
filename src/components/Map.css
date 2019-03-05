@@ -1,6 +1,10 @@
 #map {
-  height: 100vh;
+  height: 104vh;
   width: 100vw;
+}
+
+::-webkit-scrollbar { 
+  display: none; 
 }
 
 .Map-details-conteiner {
