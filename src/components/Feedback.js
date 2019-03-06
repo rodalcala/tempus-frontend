@@ -57,7 +57,7 @@ class Feedback extends Component {
             <input
               name="comments"
               type="text"
-              placeHolder="Any comments?"
+              placeholder="Any comments?"
               value={this.state.comments}
               onChange={this.handleCommentsChange}
             />
