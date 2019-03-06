@@ -60,6 +60,15 @@ class BoxDetails extends Component {
 			})
 		});
   };
+
+  handleDirectionsButton = () => {
+    const lat = this.state.box.lat.toString();
+    const googleLat = `${lat.slice(0, 2)}°${lat.slice(3, 5)}'${lat.slice(5, 7)}.${lat.slice(7, 8)}"`;
+    const lng = this.state.box.lng.toString();
+    const googleLng = `${lng.slice(0, 2)}°${lng.slice(3, 5)}'${lng.slice(5, 7)}.${lng.slice(7, 8)}"`;
+    console.log(`https://www.google.com/maps/place/${googleLat}N+${googleLng}E`);
+    // Hard coding the hemispheres;
+  }
   
   handleBackButton = () => {
     this.props.history.push("/");
@@ -199,7 +208,7 @@ class BoxDetails extends Component {
             <img className="BoxDetails-back-button" src={require('./../assets/back.png')} onClick={this.handleBackButton} alt="back"/>
           </div>
           <div className="BoxDetails-option-buttons">
-            <img className="BoxDetails-directions-button" src={require('./../assets/pedestrian-walking.png')} alt="directions"/>
+            <img className="BoxDetails-directions-button" src={require('./../assets/pedestrian-walking.png')} onClick={this.handleDirectionsButton} alt="directions"/>
             <img className="BoxDetails-share-button" src={require('./../assets/share.png')} alt="share"/>
           </div>
         </div>

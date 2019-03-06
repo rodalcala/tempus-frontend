@@ -110,6 +110,7 @@
   text-decoration: none;
   font-size: 4vh;
   font-weight: bold;
+  border-radius: 0.5vh;
 }
 
 .BoxDetails-action-botton:hover {
