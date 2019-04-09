@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Map.css';
-import apiKey from '../assets/google.maps.api';
 import BoxPreview from './BoxPreview';
 
 class Map extends Component {
@@ -38,7 +37,7 @@ class Map extends Component {
   renderMap = () => {
     if (window.initMap) this.initMap();
     else {
-      loadScript(`https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`);
+      loadScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&callback=initMap`);
       window.initMap = this.initMap;
     }
   }
@@ -59,7 +58,7 @@ class Map extends Component {
         };
 
         let image = {
-          url: require('./../assets/gps.png'),
+          url: require('./../assets/current-location.png'),
           size: new window.google.maps.Size(32, 32),
           origin: new window.google.maps.Point(0, 0),
           anchor: new window.google.maps.Point(16, 16)
