@@ -1,50 +1,63 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Map.css';
 import BoxPreview from './BoxPreview';
 
-class Map extends Component {
+const Map = props => {
 
-  state = {
-    barcelona: {lat: 41.397759, lng: 2.187349},
-    baseUrl: 'http://localhost:4000',
-  }
+  const [ barnaCoord ] = useState({
+    lat: 41.397759,
+    lng: 2.187349
+  });
 
-  componentDidMount() {
+  const [ baseUrl ] = useState(process.env.REACT_APP_SERVER_URL || 'http://localhost:4000');
+
+  const [ boxes, setBoxes ] = useState(undefined);
+
+  const [ selectedBox, setSelectedBox ] = useState(undefined);
+  const latestSelectedBox = useRef(selectedBox);
+
+  useEffect(() => {
+    console.log('First useEffect() is being called')
     if (localStorage.getItem('jwt')) {
-      this.getBoxes()
-        .then(() => this.renderMap());
+      getBoxes()
+        // .then(() => renderMap());
     } else {
-      this.props.history.push("/sign-in");
+      props.history.push("/sign-in");
     }
-  }
+  }, []);
 
-  getBoxes() {
-    return fetch(this.state.baseUrl + '/boxes', {
+  useEffect(() => {
+    console.log('Second useEffect() is being called', boxes)
+    if (boxes) renderMap();
+  }, [boxes]);
+
+  const getBoxes = () => {
+    return fetch(baseUrl + '/boxes', {
       method: 'GET',
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt')},
     })
       .then(res => res.json())
       .then(payload => {
         if (typeof payload === 'string') {
-          this.props.history.push("/sign-in");
+          props.history.push("/sign-in");
         } else {
           return payload;
         }
       })
-      .then(boxes => this.setState({ boxes }))
+      .then(boxes => setBoxes(boxes))
   }
 
-  renderMap = () => {
-    if (window.initMap) this.initMap();
+  const renderMap = () => {
+    if (window.initMap) initMap();
     else {
       loadScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&callback=initMap`);
-      window.initMap = this.initMap;
+      window.initMap = initMap;
     }
   }
 
-  initMap = () => {
+  const initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: this.state.barcelona,
+      center: barnaCoord,
       zoom: 14,
       disableDefaultUI: true
     });
@@ -52,12 +65,12 @@ class Map extends Component {
     // set position of the user via HTML5 geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        let pos = {
+        const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
 
-        let image = {
+        const image = {
           url: require('./../assets/current-location.png'),
           size: new window.google.maps.Size(32, 32),
           origin: new window.google.maps.Point(0, 0),
@@ -70,21 +83,21 @@ class Map extends Component {
           icon: image,
         })
       }, () => {
-        this.handleLocationError(true);
+        handleLocationError(true);
       });
     } else {
       // Browser doesn't support Geolocation
-      this.handleLocationError(false);
+      handleLocationError(false);
     }
 
-    let fullBox = {
+    const fullBox = {
       url: require('./../assets/simcard.png'),
       size: new window.google.maps.Size(32, 32),
       origin: new window.google.maps.Point(0, 0),
       anchor: new window.google.maps.Point(16, 16)
     }
 
-    let emptyBox = {
+    const emptyBox = {
       url: require('./../assets/open-box.png'),
       size: new window.google.maps.Size(32, 32),
       origin: new window.google.maps.Point(0, 0),
@@ -92,8 +105,8 @@ class Map extends Component {
     }
 
     // add boxes to the map
-    if (this.state.boxes) {
-      this.state.boxes.forEach((box, index) => {
+    if (boxes) {
+      boxes.forEach((box, index) => {
         if (box.full) {
           const marker = new window.google.maps.Marker({
             position: {lat: box.lat, lng: box.lng},
@@ -101,7 +114,7 @@ class Map extends Component {
             icon: fullBox,
           });
           marker.addListener('click', () => {
-            this.handleBoxClick(index);
+            handleBoxClick(index);
           });
         } else {
           const marker = new window.google.maps.Marker({
@@ -110,42 +123,41 @@ class Map extends Component {
             icon: emptyBox,
           });
           marker.addListener('click', () => {
-            this.handleBoxClick(index);
+            handleBoxClick(index);
           });
         }
       });
     }
   }
 
-  handleBoxClick = (index) => {
-    this.setState({ 
-      selectedBox: this.state.selectedBox === index
-        ? undefined
-        : index 
-    });
+  const handleBoxClick = (index) => {
+    console.log('index', index);
+    console.log('selectedBox', selectedBox);
+    console.log('latestSelectedBox.current', latestSelectedBox.current)
+    console.log('-------------------------------------------')
+    setSelectedBox( latestSelectedBox.current === index ? undefined : index );
+    latestSelectedBox.current = latestSelectedBox.current === index ? undefined : index;
   }
 
-  handleLocationError = (browserHasGeolocation) => {
+  const handleLocationError = (browserHasGeolocation) => {
     alert(browserHasGeolocation ?
       'Error: The Geolocation service failed.' :
       'Error: Your browser doesn\'t support geolocation.');
   }
 
-  renderDetails = () => {
-    const details = this.state.boxes[this.state.selectedBox]
-    if (this.state.selectedBox !== undefined) {
-      return <BoxPreview box={details}/>
+  const renderDetails = () => {
+    if (latestSelectedBox.current) {
+      return <BoxPreview box={boxes[latestSelectedBox.current]}/>
     }
   }
 
-  render() {
-    return (
-      <div className="Map-Maps">
-        {this.state.boxes ? this.renderDetails() : 'Loading...'}
-        <div id="map"></div>
-      </div>
-    );
-  }
+  return (
+    <div className="Map-Maps">
+      {boxes ? renderDetails() : 'Loading...'}
+      {console.log('Maps re-rendered', selectedBox, latestSelectedBox.current)}
+      <div id="map"></div>
+    </div>
+  )
 }
 
 // Needed to load the Google Maps script at the very top of our scripts
