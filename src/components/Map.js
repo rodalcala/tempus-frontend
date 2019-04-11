@@ -17,17 +17,14 @@ const Map = props => {
   const latestSelectedBox = useRef(selectedBox);
 
   useEffect(() => {
-    console.log('First useEffect() is being called')
     if (localStorage.getItem('jwt')) {
       getBoxes()
-        // .then(() => renderMap());
     } else {
       props.history.push("/sign-in");
     }
   }, []);
 
   useEffect(() => {
-    console.log('Second useEffect() is being called', boxes)
     if (boxes) renderMap();
   }, [boxes]);
 
@@ -131,10 +128,6 @@ const Map = props => {
   }
 
   const handleBoxClick = (index) => {
-    console.log('index', index);
-    console.log('selectedBox', selectedBox);
-    console.log('latestSelectedBox.current', latestSelectedBox.current)
-    console.log('-------------------------------------------')
     setSelectedBox( latestSelectedBox.current === index ? undefined : index );
     latestSelectedBox.current = latestSelectedBox.current === index ? undefined : index;
   }
@@ -146,15 +139,14 @@ const Map = props => {
   }
 
   const renderDetails = () => {
-    if (latestSelectedBox.current) {
-      return <BoxPreview box={boxes[latestSelectedBox.current]}/>
+    if (selectedBox !== undefined) {
+      return <BoxPreview box={boxes[selectedBox]}/>
     }
   }
 
   return (
     <div className="Map-Maps">
       {boxes ? renderDetails() : 'Loading...'}
-      {console.log('Maps re-rendered', selectedBox, latestSelectedBox.current)}
       <div id="map"></div>
     </div>
   )
