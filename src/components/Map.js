@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Map.css';
 import BoxPreview from './BoxPreview';
+import Loading from './Loading';
 
 const Map = props => {
 
-  const [ barnaCoord ] = useState({
+  const barnaCoord = {
     lat: 41.397759,
     lng: 2.187349
-  });
-
-  const [ baseUrl ] = useState(process.env.REACT_APP_SERVER_URL || 'http://localhost:4000');
+  };
 
   const [ boxes, setBoxes ] = useState(undefined);
 
@@ -29,7 +28,7 @@ const Map = props => {
   }, [boxes]);
 
   const getBoxes = () => {
-    return fetch(baseUrl + '/boxes', {
+    return fetch(props.baseUrl + '/boxes', {
       method: 'GET',
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt')},
     })
@@ -146,7 +145,7 @@ const Map = props => {
 
   return (
     <div className="Map-Maps">
-      {boxes ? renderDetails() : 'Loading...'}
+      {boxes ? renderDetails() : <Loading />}
       <div id="map"></div>
     </div>
   )
