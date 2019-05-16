@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import './Map.css';
 import BoxPreview from './BoxPreview';
 import Loading from './Loading';
+import { Context } from './../Context';
 
 const Map = props => {
 
@@ -9,6 +10,8 @@ const Map = props => {
     lat: 41.397759,
     lng: 2.187349
   };
+
+  const baseUrl = useContext(Context);
 
   const [ boxes, setBoxes ] = useState(undefined);
 
@@ -28,7 +31,7 @@ const Map = props => {
   }, [boxes]);
 
   const getBoxes = () => {
-    return fetch(props.baseUrl + '/boxes', {
+    return fetch(baseUrl + '/boxes', {
       method: 'GET',
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('jwt')},
     })
